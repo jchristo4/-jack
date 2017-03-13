@@ -19,32 +19,25 @@ Deck.prototype.setup = function() {
 };
 
 
-Deck.prototype.dealCard = function() {
-  return getCardProps(this.deck.shift());
+Deck.prototype.drawCard = function() {
+  return this.getCardProps(this.deck.shift());
 };
 
 
 Deck.prototype.getCardProps = function(n) {
   var suit = this.suits[Math.floor(n / this.cardsPerSuit)],
       face = n % this.cardsPerSuit,
-      value = face;
+      value = Math.min(10, face);
 
   switch (face) {
     case 0:
-      face = 'K';
-      value = 10;
-      break;
+      face = 'K'; break;
     case 1:
-      face = '1';
-      break;
+      face = 'A'; break;
     case 11:
-      face = 'J';
-      value = 10;
-      break;
+      face = 'J'; break;
     case 12:
-      face = 'Q';
-      value = 10;
-      break;
+      face = 'Q'; break;
     default:
   }
 
@@ -53,7 +46,6 @@ Deck.prototype.getCardProps = function(n) {
     face: face,
     value: value
   };
-
 };
 
 

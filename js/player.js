@@ -15,10 +15,27 @@ Player.prototype.resetForNewGame = function() {
 
 
 Player.prototype.dealCard = function(card, faceDown) {
+  var hasAce = this.hasAce();
+
   card.faceDown = faceDown || false;
 
   this.dealtCards.push(card);
   this.total += card.value;
+
+  if (!hasAce && card.face === 'A' && (this.total + 10) <= 21) {
+    this.total += 10;
+  }
+}
+
+
+Player.prototype.hasAce = function() {
+  for (let card of this.dealtCards) {
+    if (card.face === 'A') {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 
@@ -37,8 +54,8 @@ Player.prototype.resetAll = function() {
 
 
 Player.prototype.winPercentage = function() {
-  var total = this.games.won + this.games.lost,
-      winPercentage = (this.games.won * 100 / total).toFixed(2);
+  var totalGames = this.games.won + this.games.lost,
+      winPercentage = (this.games.won * 100 / totalGames).toFixed(2);
 
   return winPercentage + '%';
 }
@@ -47,7 +64,7 @@ Player.prototype.winPercentage = function() {
 Player.prototype.displayDealtCards = function() {
   var output = [];
 
-  for (card of this.dealtCards) {
+  for (let card of this.dealtCards) {
     output.push(card.suit + '-' + card.face + ' | ' + card.faceDown);
   }
 

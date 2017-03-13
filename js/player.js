@@ -14,10 +14,8 @@ Player.prototype.resetForNewGame = function() {
 }
 
 
-Player.prototype.dealCard = function(card, faceDown) {
+Player.prototype.dealCard = function(card) {
   var hasAce = this.hasAce();
-
-  card.faceDown = faceDown || false;
 
   this.dealtCards.push(card);
   this.total += card.value;
@@ -58,6 +56,11 @@ Player.prototype.winPercentage = function() {
       winPercentage = (this.games.won * 100 / totalGames).toFixed(2);
 
   return winPercentage + '%';
+}
+
+
+Player.prototype.updateWinOrLoss = function(win) {
+  (win) ? this.games.won += 1 : this.games.lost += 1;
 }
 
 

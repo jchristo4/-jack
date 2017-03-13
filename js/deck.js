@@ -1,10 +1,10 @@
 function Deck() {
   this.suits = ['clubs', 'diamonds', 'hearts',  'spades' ];
   this.cardsPerSuit = 13;
-  this.deck = [];
   this.dealtCards = [];
 
   this.totalCards = this.cardsPerSuit * this.suits.length;
+  this.deck = new Array(this.totalCards);
   this.setup();
 }
 
@@ -44,7 +44,8 @@ Deck.prototype.getCardProps = function(n) {
   return {
     suit: suit,
     face: face,
-    value: value
+    value: value,
+    faceDown: false
   };
 };
 

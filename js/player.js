@@ -51,11 +51,11 @@ Player.prototype.resetAll = function() {
 }
 
 
-Player.prototype.winPercentage = function() {
+Player.prototype.winPercentageMessage = function() {
   var totalGames = this.games.won + this.games.lost,
       winPercentage = (this.games.won * 100 / totalGames).toFixed(2);
 
-  return winPercentage + '%';
+  return 'win percentage is ' + winPercentage + '% (Total games : ' + totalGames + ')';
 }
 
 

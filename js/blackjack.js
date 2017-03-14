@@ -20,7 +20,6 @@ Blackjack.prototype.newGame = function() {
     this.deck.setup();
   }
 
-this.deck.displayCards();
   this.gameCount += 1;
   this.beginGame();
 }
@@ -46,18 +45,17 @@ Blackjack.prototype.beginGame = function() {
   this.ui.renderCards('player', this.player.dealtCards);
 
   if (this.dealer.total === 21 && this.player.total === 21) {
-    this.finishGame('Both you and dealer have Blackjack. Dealer wins!', false);
+    this.finishGame('Both you & dealer have Blackjack. Dealer wins !', false);
 
   } else if (this.player.total === 21) {
-    this.finishGame('You have Blackjack. You win!', true);
+    this.finishGame('You have Blackjack. You win !!', true);
 
   } else if (this.dealer.total === 21) {
-    this.finishGame('Dealer has Blackjack. Dealer wins!', false);
+    this.finishGame('Dealer has Blackjack. Dealer wins !', false);
 
   } else {
     this.inProgress = true;
-    console.log(this.getTotalsStr());
-    console.log('Hit or Stand?');
+    this.ui.updateStatus('Hit or Stay?');
   }
 }
 
@@ -69,18 +67,17 @@ Blackjack.prototype.hitByPlayer = function() {
   this.ui.renderCards('player', this.player.dealtCards);
 
   if (this.player.total > 21) {
-    this.finishGame('You went over 21. Dealer wins!', false)
+    this.finishGame('You went over 21. Dealer wins !', false)
 
   } else if (this.player.cardsCount() === 5) {
-    this.finishGame('You drew 5 cards with total less than 21. You win!', true);
+    this.finishGame('You drew 5 cards with total < 21. You win !!', true);
 
   } else if (this.player.total === 21) {
     this.finishGameByDealer();
 
   } else {
     this.inProgress = true;
-    console.log(this.getTotalsStr());
-    console.log('Hit or Stand?');
+    this.ui.updateStatus('Hit or Stay?');
   }
 }
 
@@ -103,31 +100,30 @@ Blackjack.prototype.finishGameByDealer = function() {
       this.ui.renderCards('dealer', this.dealer.dealtCards);
 
     } else if (this.dealer.total > 21) {
-      this.finishGame('Dealer went over 21. You win!', true);
+      this.finishGame('Dealer went over 21. You win !!', true);
       break;
 
     } else if (this.dealer.cardsCount() === 5) {
-      this.finishGame('Dealer drew 5 cards with total less than 21. Dealer wins!', false);
+      this.finishGame('Dealer drew 5 cards with total < 21. Dealer wins!', false);
       break;
 
     } else if (this.player.total < this.dealer.total) {
-      this.finishGame(this.getTotalsStr() + ' Dealer wins!', false);
+      this.finishGame('Dealer wins with ' + this.dealer.total + ' ! You have ' + this.player.total, false);
       break;
 
     } else if (this.player.total > this.dealer.total) {
-      this.finishGame(this.getTotalsStr() + ' You win!', true);
+      this.finishGame('You win with ' + this.player.total + ' !! Dealer has ' + this.dealer.total, true);
       break;
 
     } else if (this.player.total === this.dealer.total) {
-      this.finishGame(this.getTotalsStr() + ' Dealer wins!', false);
+      this.finishGame('Dealer wins with ' + this.dealer.total + ' ! You have ' + this.player.total, false);
       break;
     }
-    console.log(this.getTotalsStr());
   }
 }
 
 
-Blackjack.prototype.finishGame = function(message, wonByDealer) {
+Blackjack.prototype.finishGame = function(message, wonByPlayer) {
   this.inProgress = false;
 
   emitter.emit('game-over');
@@ -135,14 +131,15 @@ Blackjack.prototype.finishGame = function(message, wonByDealer) {
   this.setDealersSecondCardFaceUp();
   this.ui.renderCards('dealer', this.dealer.dealtCards);
 
-  this.dealer.updateWinOrLoss(wonByDealer);
-  this.player.updateWinOrLoss(!wonByDealer);
+  this.dealer.updateWinOrLoss(!wonByPlayer);
+  this.player.updateWinOrLoss(wonByPlayer);
 
   this.deck.pushCardsAtEnd(this.player.dealtCards);
   this.deck.pushCardsAtEnd(this.dealer.dealtCards);
 
-  console.log(this.getTotalsStr());
-  console.log(message);
+  this.ui.updateStatus(message);
+
+  console.log('Player\'s ' + this.player.winPercentageMessage());
 }
 
 
@@ -169,6 +166,6 @@ Blackjack.prototype.addEventListeners = function() {
 
 
 Blackjack.prototype.getTotalsStr = function() {
-  return 'Your total is ' + this.player.total + ' and dealer\'s is ' + this.dealer.total + '.';
+  return 'You had ' + this.player.total + ' & dealer ' + this.dealer.total + '.';
 }
 

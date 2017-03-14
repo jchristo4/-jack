@@ -3,12 +3,11 @@ function UI() {
   this.$dealer = this.$blackjack.querySelector('#dealer');
   this.$player = this.$blackjack.querySelector('#player');
 
-  this.$btnNewGame = this.$blackjack.querySelector('.btn-new-game');
+  this.$btnNewGame = this.$player.querySelector('.btn-new-game');
   this.$btnPlayerHit = this.$player.querySelector('.btn-player-hit');
   this.$btnPlayerStay = this.$player.querySelector('.btn-player-stay');
 
-  this.$playerTotal = this.$player.querySelector('.player-total');
-  this.$dealerTotal = this.$player.querySelector('.dealer-total');
+  this.$status = this.$blackjack.querySelector('#status .message');
 
   this.dirCardImages = 'images/cards/';
 
@@ -94,6 +93,12 @@ UI.prototype.attachEvents = function() {
 }
 
 
+UI.prototype.updateStatus = function(message) {
+  this.$status.innerHTML = message;
+}
+
+
+
 UI.prototype.toggleHitAndStayButtons = function(disable) {
   if (disable) {
     this.$btnPlayerHit.disabled = true;
@@ -108,6 +113,7 @@ UI.prototype.toggleHitAndStayButtons = function(disable) {
 UI.prototype.getCardImgUrl = function(card) {
   return this.dirCardImages + card.suit + '-' + card.face + '.svg';
 }
+
 
 UI.prototype.getCardFaceDownImgUrl = function(card) {
   return this.dirCardImages + 'card-facedown.svg';

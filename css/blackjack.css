@@ -15,7 +15,9 @@ html, body {
 }
 
 #blackjack {
-  background: transparent url('../images/blackjack-bg-new.png') center center no-repeat;
+  background: transparent url('../images/blackjack-bg.png') center center no-repeat;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 8pt;
   height: 480px;
   margin: 10px auto;
   width: 320px;
@@ -23,8 +25,12 @@ html, body {
 
 #blackjack #dealer,
 #blackjack #player {
-  height: 220px;
+  height: 240px;
   position: relative;
+}
+
+#blackjack #player {
+  height: 200px;
 }
 
 #blackjack .card {
@@ -40,7 +46,7 @@ html, body {
 }
 
 #blackjack #player .card  {
-  top: 50px;
+  top: 40px;
 }
 
 #blackjack #dealer .dealer-card-1 { left: 60px; }
@@ -56,34 +62,44 @@ html, body {
 #blackjack #player .player-card-5 { left: 180px; }
 
 #blackjack #player .btn-player-hit {
-  bottom: 5px;
+  bottom: 10px;
   position: absolute;
-  right: 60px;
+  left: 120px;
 }
 
 #blackjack #player .btn-player-stay {
-  bottom: 5px;
+  bottom: 10px;
+  position: absolute;
+  left: 160px;
+}
+
+#blackjack #player .btn-new-game {
+  bottom: 10px;
   position: absolute;
   right: 10px;
+  width: 82px;
 }
 
-#blackjack #status-and-reset {
+#blackjack #status {
   background: rgba(0,0,0, 0.5);
   height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-#blackjack #player .player-total,
-#blackjack #dealer .dealer-total {
-  background: rgba(0,0,0, 0.3);
-  border-bottom-right-radius: 8px;
-  border-top-right-radius: 8px;
-  bottom: 10px;
+#blackjack #status .message {
   color: #fff;
-  display: block;
+  display: inline-block;
   font-size: 11px;
-  min-height: 13px;
-  padding: 4px 10px;
-  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  border-radius: 0;
+  cursor: pointer;
+  padding: 3px 6px 5px 6px;
 }
 
 .animate {

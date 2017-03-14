@@ -2,14 +2,31 @@
 <html>
   <head>
     <title>Blackjack</title>
-    <link rel='stylesheet' type='text/css' href=''>
+    <link rel="stylesheet" type="text/css" href="css/blackjack.css">
   </head>
   <body>
 
+    <div id="blackjack">
+      <div id="dealer">
+        <div class="dealer-total"></div>
+      </div>
+      <div id="player">
+        <div class="player-total"></div>
+        <button class="btn-player-hit" value="Hit" disabled>Hit</button>
+        <button class="btn-player-stay" value="Stay" disabled>Stay</button>
+      </div>
+      <div id="status-and-reset">
+        <button class="btn-new-game" value="New Game">New Game</button>
+      </div>
+    </div>
+
     <script src="js/deck.js" charset="utf-8"></script>
     <script src="js/player.js" charset="utf-8"></script>
+    <script src="js/ui.js" charset="utf-8"></script>
+    <script src="js/eventsEmitter.js" charset="utf-8"></script>
     <script src="js/blackjack.js" charset="utf-8"></script>
     <script>
+      var emitter = new EventsEmitter();
       var blackjack = new Blackjack();
     </script>
   </body>

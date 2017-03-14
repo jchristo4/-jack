@@ -4,14 +4,14 @@ function Deck() {
   this.dealtCards = [];
 
   this.totalCards = this.cardsPerSuit * this.suits.length;
-  this.deck = new Array(this.totalCards);
+  this.deck = [];
   this.setup();
 }
 
 Deck.prototype.setup = function() {
   this.dealtCards = [];
 
-  for (var i = 0; i < this.totalCards; i++) {
+  for (let i = 0; i < this.totalCards; i++) {
     this.deck.push(i);
   }
 
@@ -25,13 +25,13 @@ Deck.prototype.drawCard = function() {
 
 
 Deck.prototype.getCardProps = function(n) {
-  var suit = this.suits[Math.floor(n / this.cardsPerSuit)],
+  let suit = this.suits[Math.floor(n / this.cardsPerSuit)],
       face = n % this.cardsPerSuit,
       value = Math.min(10, face);
 
   switch (face) {
     case 0:
-      face = 'K'; break;
+      face = 'K'; value = 10; break;
     case 1:
       face = 'A'; break;
     case 11:
@@ -50,24 +50,29 @@ Deck.prototype.getCardProps = function(n) {
 };
 
 
+Deck.prototype.pushCardsAtEnd = function(cards) {
+  this.deck.concat(cards);
+};
+
+
 Deck.prototype.resetAll = function() {
   this.setup();
 };
 
 
 Deck.prototype.shuffle = function() {
-  var n = this.deck.length - 1,
+  let n = this.deck.length - 1,
       min = 0;
 
-  for (var i = n; i > 1; i--) {
-    var j = Math.round(Math.random() * (1 + i - min) + min);
+  for (let i = n; i > 1; i--) {
+    let j = Math.round(Math.random() * (1 + i - min) + min);
     this.swapCards(i, j);
   }
 };
 
 
 Deck.prototype.swapCards = function(i, j) {
-  var tmp = this.deck[i];
+  let tmp = this.deck[i];
   this.deck[i] = this.deck[j];
   this.deck[j] = tmp;
 }

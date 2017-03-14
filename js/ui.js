@@ -1,3 +1,5 @@
+'use strict';
+
 function UI() {
   this.$blackjack = document.getElementById('blackjack');
   this.$dealer = this.$blackjack.querySelector('#dealer');
@@ -67,7 +69,7 @@ UI.prototype.renderCards = function(type, cards) {
 
     i += 1;
   }
-}
+};
 
 
 UI.prototype.attachEvents = function() {
@@ -90,13 +92,12 @@ UI.prototype.attachEvents = function() {
   emitter.on('game-over', function() {
     _this.toggleHitAndStayButtons(true);
   });
-}
+};
 
 
 UI.prototype.updateStatus = function(message) {
   this.$status.innerHTML = message;
-}
-
+};
 
 
 UI.prototype.toggleHitAndStayButtons = function(disable) {
@@ -107,14 +108,14 @@ UI.prototype.toggleHitAndStayButtons = function(disable) {
     this.$btnPlayerHit.disabled = false;
     this.$btnPlayerStay.disabled = false;
   }
-}
+};
 
 
 UI.prototype.getCardImgUrl = function(card) {
   return this.dirCardImages + card.suit + '-' + card.face + '.svg';
-}
+};
 
 
 UI.prototype.getCardFaceDownImgUrl = function(card) {
   return this.dirCardImages + 'card-facedown.svg';
-}
+};

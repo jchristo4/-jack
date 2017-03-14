@@ -1,3 +1,5 @@
+'use strict';
+
 function Player() {
   this.dealtCards = [];
   this.total = 0;
@@ -11,7 +13,7 @@ function Player() {
 Player.prototype.resetForNewGame = function() {
   this.dealtCards = [];
   this.total = 0;
-}
+};
 
 
 Player.prototype.dealCard = function(card) {
@@ -23,7 +25,7 @@ Player.prototype.dealCard = function(card) {
   if (!hasAce && card.face === 'A' && (this.total + 10) <= 21) {
     this.total += 10;
   }
-}
+};
 
 
 Player.prototype.hasAce = function() {
@@ -34,12 +36,12 @@ Player.prototype.hasAce = function() {
   }
 
   return false;
-}
+};
 
 
 Player.prototype.cardsCount = function() {
   return this.dealtCards.length;
-}
+};
 
 
 Player.prototype.resetAll = function() {
@@ -48,7 +50,7 @@ Player.prototype.resetAll = function() {
     won: 0,
     lost: 0
   };
-}
+};
 
 
 Player.prototype.winPercentageMessage = function() {
@@ -56,12 +58,12 @@ Player.prototype.winPercentageMessage = function() {
       winPercentage = (this.games.won * 100 / totalGames).toFixed(2);
 
   return 'win percentage is ' + winPercentage + '% (Total games : ' + totalGames + ')';
-}
+};
 
 
 Player.prototype.updateWinOrLoss = function(win) {
   (win) ? this.games.won += 1 : this.games.lost += 1;
-}
+};
 
 
 Player.prototype.displayDealtCards = function() {
@@ -71,5 +73,5 @@ Player.prototype.displayDealtCards = function() {
     output.push(card.suit + '-' + card.face + ' | ' + card.faceDown);
   }
 
-  console.log(output.join(', '))
-}
+  console.log(output.join(', '));
+};

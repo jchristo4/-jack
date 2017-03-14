@@ -1,0 +1,143 @@
+html, body {
+  background-color: #000;
+  box-sizing: border-box;
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: normal;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#blackjack {
+  background: transparent url('../images/blackjack-bg.png') center center no-repeat;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 8pt;
+  height: 480px;
+  margin: 10px auto;
+  width: 320px;
+}
+
+#blackjack #dealer,
+#blackjack #player {
+  height: 240px;
+  position: relative;
+}
+
+#blackjack #player {
+  height: 200px;
+}
+
+#blackjack .card {
+  height: 110px;
+  position: absolute;
+  width: 75px;
+}
+
+#blackjack #dealer .card,
+#blackjack #player .card  {
+  display: none;
+  top: 80px;
+}
+
+#blackjack #player .card  {
+  top: 40px;
+}
+
+#blackjack #dealer .dealer-card-1 { left: 60px; }
+#blackjack #dealer .dealer-card-2 { left: 90px; }
+#blackjack #dealer .dealer-card-3 { left: 120px; }
+#blackjack #dealer .dealer-card-4 { left: 150px; }
+#blackjack #dealer .dealer-card-5 { left: 180px; }
+
+#blackjack #player .player-card-1 { left: 60px; }
+#blackjack #player .player-card-2 { left: 90px; }
+#blackjack #player .player-card-3 { left: 120px; }
+#blackjack #player .player-card-4 { left: 150px; }
+#blackjack #player .player-card-5 { left: 180px; }
+
+#blackjack #player .btn-player-hit {
+  bottom: 10px;
+  position: absolute;
+  left: 120px;
+}
+
+#blackjack #player .btn-player-stay {
+  bottom: 10px;
+  position: absolute;
+  left: 160px;
+}
+
+#blackjack #player .btn-new-game {
+  bottom: 10px;
+  position: absolute;
+  right: 10px;
+  width: 82px;
+}
+
+#blackjack #status {
+  background: rgba(0,0,0, 0.5);
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#blackjack #status .message {
+  color: #fff;
+  display: inline-block;
+  font-size: 11px;
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  border-radius: 0;
+  cursor: pointer;
+  padding: 3px 6px 5px 6px;
+}
+
+.animate {
+  -webkit-animation-duration: 0.25s;
+  -webkit-animation-fill-mode: both;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInFromRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    -webkit-transform: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInFromRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    -webkit-transform: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInFromRight {
+  -webkit-animation-name: fadeInFromRight;
+  animation-name: fadeInFromRight;
+}

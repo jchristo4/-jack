@@ -1,3 +1,5 @@
+'use strict';
+
 function Blackjack() {
   this.gameCount = 0;
   this.deck = new Deck();
@@ -22,7 +24,7 @@ Blackjack.prototype.newGame = function() {
 
   this.gameCount += 1;
   this.beginGame();
-}
+};
 
 
 Blackjack.prototype.dealCardTo = function(player, faceDown) {
@@ -30,7 +32,7 @@ Blackjack.prototype.dealCardTo = function(player, faceDown) {
 
   card.faceDown = faceDown;
   player.dealCard(card);
-}
+};
 
 
 Blackjack.prototype.beginGame = function() {
@@ -57,7 +59,7 @@ Blackjack.prototype.beginGame = function() {
     this.inProgress = true;
     this.ui.updateStatus('Hit or Stay?');
   }
-}
+};
 
 
 Blackjack.prototype.hitByPlayer = function() {
@@ -67,7 +69,7 @@ Blackjack.prototype.hitByPlayer = function() {
   this.ui.renderCards('player', this.player.dealtCards);
 
   if (this.player.total > 21) {
-    this.finishGame('You went over 21. Dealer wins !', false)
+    this.finishGame('You went over 21. Dealer wins !', false);
 
   } else if (this.player.cardsCount() === 5) {
     this.finishGame('You drew 5 cards with total < 21. You win !!', true);
@@ -79,14 +81,14 @@ Blackjack.prototype.hitByPlayer = function() {
     this.inProgress = true;
     this.ui.updateStatus('Hit or Stay?');
   }
-}
+};
 
 
 Blackjack.prototype.stayByPlayer = function() {
   if (!this.inProgress) return;
 
   this.finishGameByDealer();
-}
+};
 
 
 Blackjack.prototype.finishGameByDealer = function() {
@@ -120,7 +122,7 @@ Blackjack.prototype.finishGameByDealer = function() {
       break;
     }
   }
-}
+};
 
 
 Blackjack.prototype.finishGame = function(message, wonByPlayer) {
@@ -140,12 +142,12 @@ Blackjack.prototype.finishGame = function(message, wonByPlayer) {
   this.ui.updateStatus(message);
 
   console.log('Player\'s ' + this.player.winPercentageMessage());
-}
+};
 
 
 Blackjack.prototype.setDealersSecondCardFaceUp = function() {
   this.dealer.dealtCards[1].faceDown = false;
-}
+};
 
 
 Blackjack.prototype.addEventListeners = function() {
@@ -162,10 +164,10 @@ Blackjack.prototype.addEventListeners = function() {
   emitter.on('event-player-stay', function() {
     _this.stayByPlayer();
   });
-}
+};
 
 
 Blackjack.prototype.getTotalsStr = function() {
   return 'You had ' + this.player.total + ' & dealer ' + this.dealer.total + '.';
-}
+};
 

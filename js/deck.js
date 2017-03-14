@@ -1,3 +1,5 @@
+'use strict';
+
 function Deck() {
   this.suits = ['clubs', 'diamonds', 'hearts',  'spades' ];
   this.cardsPerSuit = 13;
@@ -75,9 +77,9 @@ Deck.prototype.swapCards = function(i, j) {
   let tmp = this.deck[i];
   this.deck[i] = this.deck[j];
   this.deck[j] = tmp;
-}
+};
 
 
 Deck.prototype.displayCards = function() {
   console.log(this.deck.toString());
-}
+};

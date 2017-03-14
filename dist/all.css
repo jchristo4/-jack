@@ -46,7 +46,7 @@ html, body {
 }
 
 #blackjack #player .card  {
-  top: 40px;
+  top: 20px;
 }
 
 #blackjack #dealer .dealer-card-1 { left: 60px; }

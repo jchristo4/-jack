@@ -126,9 +126,8 @@ Blackjack.prototype.finishGameByDealer = function() {
 
 
 Blackjack.prototype.finishGame = function(message, wonByPlayer) {
+  emitter.emit('event-game-over');
   this.inProgress = false;
-
-  emitter.emit('game-over');
 
   this.setDealersSecondCardFaceUp();
   this.ui.renderCards('dealer', this.dealer.dealtCards);

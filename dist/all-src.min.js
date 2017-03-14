@@ -126,9 +126,8 @@ Blackjack.prototype.finishGameByDealer = function() {
 
 
 Blackjack.prototype.finishGame = function(message, wonByPlayer) {
+  emitter.emit('event-game-over');
   this.inProgress = false;
-
-  emitter.emit('game-over');
 
   this.setDealersSecondCardFaceUp();
   this.ui.renderCards('dealer', this.dealer.dealtCards);
@@ -244,6 +243,8 @@ UI.prototype.setup = function() {
     this.$player.appendChild($pImg);
     this.$cards.player.push($pImg);
   }
+
+  this.updateStatus('Press \'New Game\' to start');
 };
 
 
@@ -296,7 +297,7 @@ UI.prototype.attachEvents = function() {
     _this.toggleHitAndStayButtons(true);
   });
 
-  emitter.on('game-over', function() {
+  emitter.on('event-game-over', function() {
     _this.toggleHitAndStayButtons(true);
   });
 };

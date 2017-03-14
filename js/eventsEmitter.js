@@ -1,8 +1,9 @@
 'use strict';
 
 /*
- * Basic idea for this object is from David Walsh's blog post
+ * Inspiration from David Walsh's blog post
  */
+
 function EventsEmitter() {
   this.events = {};
 }
